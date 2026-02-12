@@ -79,7 +79,7 @@ body {
 
 /* Text-container stijlen */
 .text-container {
-    width: 60%;
+    width: 80%;
     max-width: 900px;
     z-index: 10;
 }
