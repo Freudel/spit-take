@@ -41,24 +41,6 @@ body {
     animation: switch 4s infinite step-start;
 }
 
-/* Mobiel: kleiner scherm */
-@media (max-width: 768px) {
-    .container {
-        gap: 20px; /* veel kleinere ruimte tussen slideshow en tekst */
-    }
-
-    .slideshow {
-        width: 100%;    /* fullscreen breedte blijft behouden */
-        height: 50vh;   /* hoogte van de slideshow */
-    }
-
-    .slideshow img {
-        width: 100%;
-        height: auto;
-        top: 50%;
-        transform: translate(-50%, -50%);
-    }
-}
 /* Snelle wisseling: 0,5s per slide */
 .slideshow img:nth-child(1) { animation-delay: 0s; }
 .slideshow img:nth-child(2) { animation-delay: 0.5s; }
@@ -113,4 +95,28 @@ a{
 a:hover {
     text-decoration: underline;
     color: #E4D396;
+}
+
+/* Mobiel: kleiner scherm */
+@media (max-width: 768px) {
+    .container {
+        gap: 20px; /* veel kleinere ruimte tussen slideshow en tekst */
+    }
+
+    .slideshow {
+        width: 100%;    /* fullscreen breedte blijft behouden */
+        height: 50vh;   /* hoogte van de slideshow */
+    }
+
+    .slideshow img {
+        width: 100%;
+        height: auto;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .text-container {
+        width: 90%; /* in plaats van 100% */
+        max-width: none; /* optioneel, zodat max-width van desktop niet doorslaggevend is */
+    }
 }
