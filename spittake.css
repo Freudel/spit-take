@@ -1,10 +1,42 @@
+/*font definitie*/
+@font-face {
+  font-family: 'AmericanaStd-Bold';
+  src: url('fonts/AmericanaStd-Bold.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'AkzidenzGrotesk-Regular';
+  src: url('fonts/AkzidenzGrotesk-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'AkzidenzGrotesk-Super';
+  src: url('fonts/AkzidenzGrotesk-Super.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+
 /* Body */
 body {
-    margin: 0;
+/*    margin: 0;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #4B0924;
+    font-family: Arial, sans-serif;
+    text-align: center;*/
+    margin: 0;
+    min-height: 100vh;
     background-color: #4B0924;
     font-family: Arial, sans-serif;
     text-align: center;
@@ -15,16 +47,17 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 100px; /* ruimte tussen slideshow en tekst */
+    /*gap: 100px; /* ruimte tussen slideshow en tekst */*/
     max-width: 90%;
 }
 
 /* Slideshow container */
 .slideshow {
-    position: relative;
-    width: 150%;        /* desktop breedte */
-    max-width: 900px;
-    height: 50vh;      /* desktop hoogte */
+    position: relative;    /* absoluut positioneerde afbeeldingen centreren */
+    margin-top: -40vh;
+    width: 100vw;          /* 100% van de viewport breedte */
+    height: 180vh;         /* 100% van de viewport hoogte */
+    overflow: hidden;      /* voorkomt scrollbars bij grote afbeeldingen */
 }
 
 /* Slides absoluut en gecentreerd */
@@ -32,10 +65,9 @@ body {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 150%;       /* past in container */
-    height: auto;
-    max-height: 200%;
-    object-fit: contain;
+    width: auto;           /* breedte automatisch */
+    height: 100%;          /* hoogte vult volledig */
+    object-fit: cover;     /* vult container zonder uitrekken */
     transform: translate(-50%, -50%);
     opacity: 0;
     animation: switch 4s infinite step-start;
@@ -61,29 +93,42 @@ body {
 
 /* Text-container stijlen */
 .text-container {
-    width: 80%;
-    max-width: 900px;
+    width: 70%;
+    max-width: 600px;
     z-index: 10;
+    margin-top: -20vh;    /* omhoog, deels over slideshow */
+    position: relative;   /* zodat z-index werkt */   
+    margin-bottom: 5vh;
 }
 
 h1 {
-    font-size: 1.5rem;
-    margin-top: 20px;
+    font-size: 2rem;
     color: #fcf8e6;
+    font-family: 'AmericanaStd-Bold', sans-serif;
+
 }
 
 p {
     color: #fcf8e6;
-    font-size: 1rem;
+    font-size: 1.2rem;
+    line-height: 1.8rem;
     text-align: center;
+    font-family: 'AkzidenzGrotesk-Regular', sans-serif;
 }
 
 h2 {
     font-size: 1.5rem;
     display: inline-block;
-    margin-top: 15px;
     font-weight: bold;
-    color: #7C42FF;
+    color: #fcf8e6;
+}
+
+h3 {
+    font-size: 0.8rem;
+    display: inline-block;
+    color: #fcf8e6;
+    font-family: 'AkzidenzGrotesk-Regular', sans-serif;   
+        margin-top: 20vh;
 }
 
 a{
@@ -99,24 +144,46 @@ a:hover {
 
 /* Mobiel: kleiner scherm */
 @media (max-width: 768px) {
-    .container {
-        gap: 20px; /* veel kleinere ruimte tussen slideshow en tekst */
-    }
-
+    /* Slideshow container bovenaan */
     .slideshow {
-        width: 100%;    /* fullscreen breedte blijft behouden */
-        height: 50vh;   /* hoogte van de slideshow */
+        width: 100%;         /* full-width */
+        height: 50vh;        /* hoogte van container */
+        overflow: hidden;    /* zorgt dat cut-off zichtbaar is */
+        position: relative;
+        margin-top: 0;
     }
 
     .slideshow img {
-        width: 100%;
-        height: auto;
+        position: absolute;
         top: 50%;
+        left: 50%;
+        width: 120%;         /* 20% cut-off horizontaal */
+        height: 120%;        /* 20% cut-off verticaal */
+        object-fit: cover;   /* vult container en snijdt netjes af */
         transform: translate(-50%, -50%);
+        opacity: 0;
+        animation: switch 4s infinite step-start;
     }
 
+    /* Animatie delays voor slides */
+    .slideshow img:nth-child(1) { animation-delay: 0s; }
+    .slideshow img:nth-child(2) { animation-delay: 0.5s; }
+    .slideshow img:nth-child(3) { animation-delay: 1s; }
+    .slideshow img:nth-child(4) { animation-delay: 1.5s; }
+    .slideshow img:nth-child(5) { animation-delay: 2s; }
+    .slideshow img:nth-child(6) { animation-delay: 2.5s; }
+    .slideshow img:nth-child(7) { animation-delay: 3s; }
+    .slideshow img:nth-child(8) { animation-delay: 3.5s; }
+
+    /* Tekst onder slideshow */
     .text-container {
-        width: 90%; /* in plaats van 100% */
-        max-width: none; /* optioneel, zodat max-width van desktop niet doorslaggevend is */
+        width: 85%;
+        max-width: none;
+        margin-top: 20px;    /* ruimte onder slideshow */
     }
+
+    h1 {
+    font-size: 1.7rem;
+
+}
 }
